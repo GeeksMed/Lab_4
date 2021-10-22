@@ -64,9 +64,9 @@
 
             GridLayout:
                 size_hint_y: None
-                height: 140
+                height: 200
                 cols: 3
-                rows: 5
+                rows: 7
                 padding: 10, 10
                 spacing: 10, 0
                 Blank:
@@ -101,6 +101,20 @@
                     id: input_ponto-visado
                     multiline: False
 
+                Text_Label:
+                    text: 'Ângulo Horizontal'
+                Blank:
+                Text_Label:
+                    text: 'Ângulo Vertical(Z)'
+
+                Inputs_Padrao:
+                    id: input_ang_horizontal
+                    multiline: False
+                Blank:
+                Inputs_Padrao:
+                    id: input_ang_vertical
+                    multiline: False
+
             GridLayout:
                 size_hint_y: None
                 height: 30
@@ -113,11 +127,12 @@
 
             GridLayout:
                 size_hint_y: None
-                height: 200
+                height: 140
                 padding: 10, 10
                 spacing: 10, 0
                 cols: 3
-                rows: 8
+                rows: 6
+
                 Blank:
                 Blank:
                 Blank:
@@ -146,28 +161,42 @@
                 Blank:
                 Blank:
 
-                Text_Label:
-                    text: 'Cota'
-                    width: 200
-                Text_Label:
-                    text: 'N(Y)'
-                    width: 200
-                Text_Label:
-                    text: 'E(X)'
-                    width: 200
+                Blank:
+                GridLayout:
+                    size_hint_y: None
+                    height: 70
+                    padding: 10, 10
+                    spacing: 10, 0
+                    cols: 1
+                    rows: 1
+                    Button:
+                        text: 'Adicionar'
+                        background_color: 1.2, 0, 0, 0.9
+                        canvas.before:
+                            Color:
+                                rgba:
+                                    self.background_color
+                        color: (1,1,1,1)
+                        bold: True
+                Blank:
 
-                Inputs_Padrao:
-                    id: input_cota
-                    multiline: False
-                    width: 200
-                Inputs_Padrao:
-                    id: input_n_y
-                    multiline: False
-                    width: 200
-                Inputs_Padrao:
-                    id: input_e_x
-                    multiline: False
-                    width: 200
+        GridLayout:
+            cols: 1
+            rows: 2
+            TextInput:
+                id: textInp2
+                multiline: True
+                readonly: True
+                background_color: 0.92,0.89,0.75,1
+                on_focus: self.focus = False
+
+            GridLayout:
+                size_hint_y: None
+                height: 70
+                padding: 10, 10
+                spacing: 10, 0
+                cols: 3
+                rows: 3
 
                 Blank:
                 Blank:
@@ -175,7 +204,7 @@
 
                 Blank:
                 Button:
-                    text: 'Adicionar'
+                    text: 'Exportar'
                     background_color: 1.2, 0, 0, 0.9
                     canvas.before:
                         Color:
@@ -185,8 +214,6 @@
                     bold: True
                 Blank:
 
-        GridLayout:
-            cols: 2
-            rows: 1
-            Button:
-                text: 'Hello 2'
+                Blank:
+                Blank:
+                Blank:
