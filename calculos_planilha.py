@@ -77,6 +77,21 @@ def calcula(cota, altura_do_aparelho, estacao, ponto_visado, angulo_horizontal, 
     return vetor
 
 
+def exemplo_vetor():
+    # testeFaculdade
+    c = '800'
+    ai = '1,45'
+    est = 'A'
+    pv = 'B'
+    ah = '0'
+    fi = '775'
+    fm = '865'
+    fs = '950'
+    av = '99 02 25'
+
+    resultado = calcula(c, ai, est, pv, ah, fi, fm, fs, av)
+    return resultado
+
 if __name__ == '__main__':
     #testeYoutube
     c = "222"
@@ -105,16 +120,3 @@ if __name__ == '__main__':
     resultado = calcula(c, ai, est, pv, ah, fi, fm, fs, av)
     print(resultado)
 
-    # testeFaculdade
-    c = '800'
-    ai = '1,45'
-    est = 'A'
-    pv = 'B'
-    ah = '0'
-    fi = '775'
-    fm = '865'
-    fs = '950'
-    av = '99 02 25'
-
-    resultado = calcula(c, ai, est, pv, ah, fi, fm, fs, av)
-    print(resultado)
