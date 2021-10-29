@@ -1,0 +1,9 @@
+env/
+.buildozer/
+.idea/
+bin/
+docs/
+adb.exe
+AdbWinApi.dll
+AdbWinUsbApi.dll
+buildozer.spec

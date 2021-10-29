@@ -1,3 +1,0 @@
-title=MyApp
-author=Laboratorio Empreendedorismo Inovacao
-orientation=landscape
