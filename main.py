@@ -147,7 +147,9 @@ class LevantamentoTaquiometrico(MDApp):
                       self.fio_superior.text,
                       self.ang_vertical.text,
                       self.distancia_reduzida.text,
-                      self.cota_nova.text]
+                      self.cota_nova.text,
+                      self.observacoes.text,
+                      datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")]
             aux = ""
             for campo in campos:
                 aux += campo + ';'
@@ -165,7 +167,7 @@ class LevantamentoTaquiometrico(MDApp):
         book = Workbook()
         sheet = book.active
         nome_xlsx = f'{os.path.dirname(os.path.abspath(__file__))}\\LevantamentoTaquiometrico_' + str(
-            datetime.datetime.today())[:10] + str(randint(1, 999999)) + '.xlsx'
+            datetime.datetime.today())[:10] + '_' + str(randint(1, 999999)) + '.xlsx'
 
         sheet['A1'] = 'Altura do Aparelho'
         sheet['B1'] = 'Estação'
@@ -177,22 +179,26 @@ class LevantamentoTaquiometrico(MDApp):
         sheet['H1'] = 'Ângulo Vertical'
         sheet['I1'] = 'Distância Reduzida'
         sheet['J1'] = 'Cota'
+        sheet['K1'] = 'Observações'
+        sheet['L1'] = 'Data da Leitura'
 
         cont = 2
         lista = self.lista_pontos.children
         for vetor in lista:
             vetor = vetor.text.split(';')
             print(vetor)
-            sheet['A' + str(cont)] = str(vetor[0])
-            sheet['B' + str(cont)] = str(vetor[1])
-            sheet['C' + str(cont)] = str(vetor[2])
-            sheet['D' + str(cont)] = str(vetor[3])
-            sheet['E' + str(cont)] = str(vetor[4])
-            sheet['F' + str(cont)] = str(vetor[5])
-            sheet['G' + str(cont)] = str(vetor[6])
-            sheet['H' + str(cont)] = str(vetor[7])
-            sheet['I' + str(cont)] = str(vetor[8])
-            sheet['J' + str(cont)] = str(vetor[9])
+            sheet['A' + str(cont)] = str(vetor[1])
+            sheet['B' + str(cont)] = str(vetor[2])
+            sheet['C' + str(cont)] = str(vetor[3])
+            sheet['D' + str(cont)] = str(vetor[4])
+            sheet['E' + str(cont)] = str(vetor[5])
+            sheet['F' + str(cont)] = str(vetor[6])
+            sheet['G' + str(cont)] = str(vetor[7])
+            sheet['H' + str(cont)] = str(vetor[8])
+            sheet['I' + str(cont)] = str(vetor[9])
+            sheet['J' + str(cont)] = str(vetor[10])
+            sheet['K' + str(cont)] = str(vetor[11])
+            sheet['L' + str(cont)] = str(vetor[12])
             cont = cont + 1
         try:
             book.save(nome_xlsx)
@@ -330,7 +336,7 @@ class LevantamentoTaquiometrico(MDApp):
             helper_text_mode="on_focus",
             halign="center",
             size_hint=(0.21, 1),
-            pos_hint={"center_x": .13, "center_y": .25},
+            pos_hint={"center_x": .13, "center_y": .27},
             font_size=22,
             readonly="True"
         )
@@ -341,16 +347,27 @@ class LevantamentoTaquiometrico(MDApp):
             helper_text_mode="on_focus",
             halign="center",
             size_hint=(0.21, 1),
-            pos_hint={"center_x": .37, "center_y": .25},
+            pos_hint={"center_x": .37, "center_y": .27},
             font_size=22,
             readonly="True"
         )
         screen.add_widget(self.distancia_reduzida)
         screen.add_widget(self.cota_nova)
 
+        self.observacoes = MDTextField(
+            hint_text="Observações",
+            helper_text="",
+            helper_text_mode="on_focus",
+            halign="auto",
+            size_hint=(0.45, 1),
+            pos_hint={"center_x": 0.25, "center_y": 0.18},
+            font_size=18
+        )
+        screen.add_widget(self.observacoes)
+
         self.label_erro_adicionar = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.25, "center_y": 0.16},
+            pos_hint={"center_x": 0.25, "center_y": 0.12},
             theme_text_color="Secondary",
             font_style="H5"
         )
@@ -360,7 +377,7 @@ class LevantamentoTaquiometrico(MDApp):
         screen.add_widget(MDFillRoundFlatButton(
             text="ADICIONAR",
             font_size=17,
-            pos_hint={"center_x": 0.25, "center_y": 0.1},
+            pos_hint={"center_x": 0.25, "center_y": 0.06},
             on_press=self.adicionar
         ))
 
